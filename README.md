@@ -1,25 +1,21 @@
-# Minimal C startup code for Cortex 
-Minimal "*framework*" providing startup code and Makefile for building bare-metal C programs for Cortex-M4.
-
-# Target hardware
-By default framework is configured for ARM Cortex-M4F and tested on Nordic NRF52 Development Kit. However it shouldn't be a problem tune it for other Cortex-M*x* MCU or development board.
+# Blinky example code with FreeRTOS for Cortex-M0
+Minimal "*framework*" providing startup code and Makefile for building a FreeRTOS C program for Cortex-M0. This should be used alongside the Cortex-M0 softcore implementation available on https://github.com/vfinotti/cortex-m0-soft-microcontroller.
 
 # Required software
 This "*framework*" requires following components:
 - ARM GCC compiler (install `arm-none-eabi-gcc`)
-- SEGER J-Link tools (https://www.segger.com/downloads/jlink)
-- ARM GDB (install `arm-none-eabi-gdb`)
 
 # Configuration
-You have to set to rename Makefile.in to Makefile and set two paths in it: `TOOLCHAIN_PATH` and `JLINK_PATH`.
+Set the paths of `TOOLCHAIN_PATH` in Makefile so they correspond to the right path on your machine.
 
 # Usage
 Command "make" is all you need, you can do everything with it.
 
 `make` - build project (in ELF, BIN and IHEX formats)
 
-`make flash` - flash device
+`make clean` - clean files
 
-`make gdbserver` - starts J-Link GDB server
 
-`make gdb` - starts ARM GDB that automatically connects to GDB Server
+# References
+
+1. https://github.com/goofacz/cortex-m-minimal-c
