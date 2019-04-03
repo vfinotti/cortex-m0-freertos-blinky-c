@@ -13,7 +13,7 @@ GDB = $(TOOLCHAIN_PATH)/arm-none-eabi-gdb
 
 C_CPU_FLAGS = -mtune=cortex-m0 -mthumb -march=armv6-m
 C_DEBUG_FLAGS = -g0
-C_OTHER_FLAGS =
+C_OTHER_FLAGS = -fdata-sections -ffunction-sections
 C_OPTIMIZATION_FLAGS = -O0
 C_LANGUAGE_FLAGS = -std=c11
 C_INCLUDES = -I./ \
