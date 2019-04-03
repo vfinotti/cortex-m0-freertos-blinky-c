@@ -16,12 +16,28 @@ C_DEBUG_FLAGS = -g0
 C_OTHER_FLAGS =
 C_OPTIMIZATION_FLAGS = -O0
 C_LANGUAGE_FLAGS = -std=c11
-C_INCLUDES = -Icmsis/Include/ -Icmsis
+C_INCLUDES = -I./ \
+             -Icmsis/Include/ \
+             -Icmsis \
+             -IFreeRTOS/Source/portable/GCC/ARM_CM0 \
+             -IFreeRTOS/Source \
+             -IFreeRTOS/Source/include
 
 CFLAGS = $(C_CPU_FLAGS) $(C_DEBUG_FLAGS) $(C_OTHER_FLAGS) $(C_OPTIMIZATION_FLAGS) $(C_INCLUDES)
-LD_FLAGS = -T gcc_arm.ld -Wl,-Map=project.map -Wl,--gc-sections -Icmsis/Include/ -Icmsis -nostartfiles
+LD_FLAGS = -T gcc_arm.ld -Wl,-Map=project.map -Wl,--gc-sections		\
+           -I./ \
+           -Icmsis/Include/ \
+           -Icmsis \
+           -IFreeRTOS/Source/portable/GCC/ARM_CM0 \
+           -IFreeRTOS/Source \
+           -IFreeRTOS/Source/include -nostartfiles
 
-SOURCES = startup_ARMCM0.c system_ARMCM0.c main.c
+SOURCES = startup_ARMCM0.c system_ARMCM0.c main.c \
+          FreeRTOS/Source/croutine.c FreeRTOS/Source/event_groups.c FreeRTOS/Source/list.c \
+          FreeRTOS/Source/queue.c FreeRTOS/Source/stream_buffer.c FreeRTOS/Source/tasks.c \
+          FreeRTOS/Source/timers.c FreeRTOS/Source/portable/GCC/ARM_CM0/port.c \
+          FreeRTOS/Source/portable/MemMang/heap_4.c
+
 OBJECTS = $(SOURCES:.c=.o)
 
 all: project.hex project.bin project.S
